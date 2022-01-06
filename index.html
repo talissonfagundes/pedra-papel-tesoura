@@ -1,0 +1,173 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script></script>
+<title>Pedra Papel Tesoura </title>
+</head>
+
+<body>
+  <h1>Façam suas apostas 🎮 </h1>
+  <div style="display:table">
+    <span class="playerSocoreBox"style=""> 
+      <h1>Humano <span id="playerscore1">-</span></h1>
+      <div class="playerOptions" id="1" onclick="playerSelection(1)">PEDRA</div>
+      <div class="playerOptions" id="2" onclick="playerSelection(2)">PAPEL</div>
+      <div class="playerOptions" id="3" onclick="playerSelection(3)">TESOURA</div>
+    </span>
+    <span class=computerScoreBox style="">
+      <h1>Computador <span id="compscore">-</span></h1>
+      <div class="playerOptions" id="4" >PEDRA</div>
+      <div class="playerOptions" id="5" >PAPEL</div>
+      <div class="playerOptions" id="6" >TESOURA</div>
+    </span>
+    <div id="resultado" class="resultadoBox">  &nbsp;   </div>
+  </div>
+  
+<script>
+  var computerScore = 0;
+  var playerScore = 0;
+  
+  
+  //Função que roda a seleção do Jogador 
+  function playerSelection(playerChoice){
+ 
+    var element = document.getElementById(playerChoice);
+
+    elements=document.getElementsByClassName("playerOptions");
+
+    for(elementss of elements){
+      elementss.classList.remove("playerOptionsSelected")
+    }
+    
+   element.classList.add("playerOptionsSelected");
+
+
+    //console.clear()
+    //console.log(playerChoice);
+    compSelection = computerSelection();
+    //console.log(compSelection);
+    console.log(winner(playerChoice, compSelection));
+}
+  // Função que gera escolha do computador
+  function computerSelection(){
+    var computerresult = Math.floor(Math.random() * (3 - 1 + 1)) + 1
+    //alert(computerresult);
+    elementCpu=document.getElementById(computerresult+3)
+    elementCpu.classList.add("playerOptionsSelected");
+    return computerresult ;
+  }
+
+  //Função que compara e indica vencedor
+  function winner(player,computer){
+    var divresult = document.getElementById("resultado");
+    var playerscore1  = document.getElementById("playerscore1");
+    var compscore  = document.getElementById("compscore");
+    
+    divresult.innerHTML="";
+
+
+     
+    //console.log("player:"+player+" Computador:"+computer)
+    //1 = pedra ; 2 = papel; 3 = tesoura
+    if(player==1) {
+     if(computer==2){
+      computerScore++;
+      
+      divresult.innerHTML="<h2>Que pena, voce perdeu  </h2>";
+      compscore.innerHTML="- "+computerScore;    
+
+      return"que pena, voce perdeu"+computerScore;
+     } else if(computer==3){
+      playerScore++;
+      divresult.innerHTML="<h2>Você Ganhou </h2>";
+      playerscore1.innerHTML="- "+playerScore;
+      return "Você Ganhou";
+     }else if(computer==1){
+      divresult.innerHTML="<h2>Empate</h2>";
+      return "Empate";
+     }
+    }
+    
+    if(player==2) {
+      if(computer==2){
+      divresult.innerHTML="<h2>Empate</h2>";
+      return "Empate";
+     } else if(computer==3){
+      computerScore++;
+      compscore.innerHTML="- "+computerScore;    
+      divresult.innerHTML="<h2>Você Perdeu </h2>";
+      return "Você Perdeu";
+     }else if(computer == 1){
+      playerScore++;
+      playerscore1.innerHTML="- "+playerScore;
+      divresult.innerHTML="<h2>Ganhou</h2>";
+      return "Você Ganhou";
+      
+     }
+     
+    }
+    if(player==3) {
+      if(computer==3){
+        divresult.innerHTML="<h2>Empate </h2>";
+      return"Empate";
+     } else if(computer==2){
+      playerScore++;
+      playerscore1.innerHTML="- "+playerScore;
+      divresult.innerHTML="<h2>Você Ganhou </h2>";
+      return "Você Ganhou";
+     }else if(computer == 1){
+      computerScore++;
+      compscore.innerHTML="- "+computerScore;    
+      divresult.innerHTML="<h2>Você Perdeu </h2>";
+      return "Você Perdeu";
+     }
+    }
+  }
+</script>
+
+  <style type="text/css">
+    .playerOptions{
+      height: 20px;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .playerOptionsSelected{
+      background-color: crimson; 
+    }
+    .resultadoBox{
+      display: block;
+      margin: 10px; 
+      padding: 30px; 
+      background-color:#C70039; 
+      color: white; 
+      border-radius: 10px; 
+      text-align: center;
+    }
+    .computerScoreBox{
+      float: left; 
+      margin-left: 80px; 
+      padding:30px; 
+      background-color: #581845; 
+      color: white; 
+      margin-left: 60px; 
+      border-radius: 10px;
+      min-width: 330px;
+    }
+    .playerSocoreBox{
+      float: left; 
+      padding: 30px; 
+      background-color:#900C3F;
+       color: white; 
+       border-radius: 10px; 
+       min-width: 330px;
+    }
+  </style>
+  
+  
+
+</body>
+</html>
